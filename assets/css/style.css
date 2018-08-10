@@ -1,0 +1,48 @@
+.header {
+  position: absolute;
+  width: 100%;
+  min-height: 119px;
+  background: url("http://www.teletubbies.com/img/bg-header.png") top center repeat-x;
+  margin: 0 auto;
+}
+
+.header__container {
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  margin: 0 auto;
+  max-width: 62.5rem;
+  width: 100%;
+}
+
+.header__container__logo {
+  margin: 10px 0 0 70px;
+  transition: all .1s ease-in-out;
+}
+
+.header__container__logo:hover {
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 40em){
+  .header {
+    background: url("http://www.teletubbies.com/img/bg-header-mob.png") top center repeat-x;
+  }
+
+  .header__container{
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .header__container__logo {
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 64em) and (min-width: 40.063em){
+  .header {
+    background: url("http://www.teletubbies.com/img/bg-header-tablet.png") top left repeat-x;
+  }
+}
