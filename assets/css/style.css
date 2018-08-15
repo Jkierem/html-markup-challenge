@@ -1,9 +1,14 @@
+* {
+  font-family:  'Nunito', sans-serif;
+}
+
 .header {
   position: absolute;
   width: 100%;
   min-height: 119px;
   background: url("http://www.teletubbies.com/img/bg-header.png") top center repeat-x;
   margin: 0 auto;
+  z-index: 20;
 }
 
 .header__container {
@@ -23,6 +28,179 @@
   transform: scale(1.1);
 }
 
+.carousel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../img/bg-main.jpg") center 0 repeat-x;
+}
+
+.carousel__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  opacity: 1;
+  transition: opacity 1s linear;
+}
+
+.carousel__item--hidden {
+  opacity: 0;
+  position: absolute;
+}
+
+
+.carousel__item__image {
+  height: auto;
+  vertical-align: middle;
+}
+
+.carousel__captions {
+  box-sizing: border-box;
+  max-width: 100%;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  padding: 25px 20px 66px;
+  text-align: center;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.carousel__captions__item {
+  font-size: 2em;
+  display: none;
+  color: white;
+}
+
+.carousel__captions__item--active {
+  display: block;
+}
+
+.carousel__control {
+  max-width: 100vw;
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
+  top: 50%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 20;
+}
+
+.carousel__control__button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.carousel__pager {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  cursor: default;
+}
+
+.carousel__pager__dot {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background-color: white;
+  display: inline-block;
+}
+
+.carousel__pager__dot--active {
+  background-color: #ff3889;
+}
+
+.social {
+  padding: 20px 0 100px;
+  background: #00a0e4 url("http://www.teletubbies.com/img/bg-share.png") bottom center repeat-x;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.social__header {
+  margin-bottom: 0.5rem;
+  font-size: 1.375rem;
+}
+
+.social__media__link {
+  text-decoration: none;
+}
+
+.social__media__link__logo {
+  margin: 0px 5px;
+  transition: all .1s ease-in-out;
+}
+
+.social__media__link__logo:hover {
+  transform: scale(1.1);
+}
+
+.footer {
+  position: relative;
+  font-family: "Nunito", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #fd0;
+  padding: 40px 0px 20px;
+  color: #194a93;
+}
+
+.footer__image {
+  cursor: pointer;
+  position: absolute;
+  margin: auto;
+  top: -50px;
+  left: 0;
+  right: 0;
+  transition: all .1s ease-in-out;
+}
+
+.footer__image:hover {
+  transform: scale(1.1);
+}
+
+.footer__policy {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  font-size: 1.3rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.footer__policy__link {
+  font-weight: bold;
+  text-decoration: none;
+  color:  #194a93;
+  margin: 10px;
+}
+
+.footer__copyrights {
+  word-wrap: break-word;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+  margin: 0px 10px;
+}
+
 @media only screen and (max-width: 40em){
   .header {
     background: url("http://www.teletubbies.com/img/bg-header-mob.png") top center repeat-x;
@@ -38,6 +216,16 @@
     padding: 0;
     margin: 0;
     margin-top: 10px;
+  }
+
+  .carousel__item__image {
+    max-width: 90%;
+    margin-bottom: 100px;
+    margin-top: 119px;
+  }
+
+  .carousel__captions__item {
+    font-size: 1rem;
   }
 }
 

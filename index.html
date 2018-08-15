@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Teletubbies</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -15,30 +16,37 @@
     </header>
     <main>
       <section class="carousel">
-        <section>
-          <article class="carousel__item">
-            <figure>
-              <img src="./assets/img/carousel-new-series-canada.png" alt="Teletubbies">
-            </figure>
-            <h2 class="carousel__item__caption">Watch the brand NEW series January 9th at 8am EST!</h2>
+        <article class="carousel__item">
+          <img class="carousel__item__image" src="./assets/img/carousel-new-series-canada.png" alt="Teletubbies">
+        </article>
+        <article class="carousel__item carousel__item--hidden">
+          <img class="carousel__item__image" src="./assets/img/carousel-teletub-me.png" alt="Teletubbies">
+        </article>
+        <article class="carousel__item carousel__item--hidden">
+          <img class="carousel__item__image" src="./assets/img/carousel-new-website.png" alt="Teletubbies">
+        </article>
+
+        <section class="carousel__captions">
+          <article class="carousel__captions__item carousel__captions__item--active">
+            <h3>Watch the brand NEW series January 9th at 8am EST!</h3>
           </article>
-          <article class="carousel__item">
-            <figure>
-              <img src="./assets/img/carousel-teletub-me.png" alt="Teletubbies">
-            </figure>
-            <h2 class="carousel__item__caption">Turn yourself &amp your friends into Teletubbies</h2>
+          <article class="carousel__captions__item">
+            <h3>Turn yourself &amp your friends into Teletubbies</h3>
           </article>
-          <article class="carousel__item">
-            <figure>
-              <img src="./assets/img/carousel-new-website.png" alt="Teletubbies">
-            </figure>
-            <h2 class="carousel__item__caption">Eh-oh! We're creating a Teletubbies site just for your little ones to play with their favourite characters!</h2>
+          <article class="carousel__captions__item">
+            <h3>Eh-oh! We're creating a Teletubbies site just for your little ones to play with their favourite characters!</h3>
           </article>
         </section>
 
+        <section class="carousel__pager">
+          <div data-index="0" class="carousel__pager__dot carousel__pager__dot--active"></div>
+          <div data-index="1" class="carousel__pager__dot"></div>
+          <div data-index="2" class="carousel__pager__dot"></div>
+        </section>
+
         <section class="carousel__control">
-          <button class="carousel__control__button"> <img src="./assets/img/btn-carousel-prev.png" alt="Previous"> </button>
-          <button class="carousel__control__button"> <img src="./assets/img/btn-carousel-next.png" alt="Next"> </button>
+          <div class="carousel__control__button"> <img src="./assets/img/btn-carousel-prev.png" alt="Previous"> </div>
+          <div class="carousel__control__button"> <img src="./assets/img/btn-carousel-next.png" alt="Next"> </div>
         </section>
 
       </section>
@@ -68,5 +76,7 @@
       </nav>
       <p class="footer__copyrights">Teletubbies characters and logo © 2015 and TM DHX Worldwide Limited. Licensed by DHX Worldwide Limited. All rights reserved.</p>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js"></script>
+    <script src="./assets/js/index.js" charset="utf-8" type="module"></script>
   </body>
 </html>
