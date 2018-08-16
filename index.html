@@ -16,25 +16,27 @@
     </header>
     <main>
       <section class="carousel">
-        <article class="carousel__item">
+        <article class="carousel__item carousel__item--active">
           <img class="carousel__item__image" src="./assets/img/carousel-new-series-canada.png" alt="Teletubbies">
         </article>
-        <article class="carousel__item carousel__item--hidden">
+        <article class="carousel__item">
           <img class="carousel__item__image" src="./assets/img/carousel-teletub-me.png" alt="Teletubbies">
         </article>
-        <article class="carousel__item carousel__item--hidden">
+        <article class="carousel__item">
           <img class="carousel__item__image" src="./assets/img/carousel-new-website.png" alt="Teletubbies">
         </article>
 
         <section class="carousel__captions">
-          <article class="carousel__captions__item carousel__captions__item--active">
-            <h3>Watch the brand NEW series January 9th at 8am EST!</h3>
-          </article>
-          <article class="carousel__captions__item">
-            <h3>Turn yourself &amp your friends into Teletubbies</h3>
-          </article>
-          <article class="carousel__captions__item">
-            <h3>Eh-oh! We're creating a Teletubbies site just for your little ones to play with their favourite characters!</h3>
+          <article class="carousel__captions__container">
+            <article class="carousel__captions__item carousel__captions__item--active">
+              <h3>Watch the brand NEW series January 9th at 8am EST!</h3>
+            </article>
+            <article class="carousel__captions__item">
+              <h3>Turn yourself &amp your friends into Teletubbies</h3>
+            </article>
+            <article class="carousel__captions__item">
+              <h3>Eh-oh! We're creating a Teletubbies site just for your little ones to play with their favourite characters!</h3>
+            </article>
           </article>
         </section>
 
@@ -45,8 +47,8 @@
         </section>
 
         <section class="carousel__control">
-          <div class="carousel__control__button"> <img src="./assets/img/btn-carousel-prev.png" alt="Previous"> </div>
-          <div class="carousel__control__button"> <img src="./assets/img/btn-carousel-next.png" alt="Next"> </div>
+          <div class="carousel__control__button"> <img data-action="prev" src="./assets/img/btn-carousel-prev.png" alt="Previous"> </div>
+          <div class="carousel__control__button"> <img data-action="next" src="./assets/img/btn-carousel-next.png" alt="Next"> </div>
         </section>
 
       </section>
