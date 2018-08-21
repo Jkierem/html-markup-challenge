@@ -1,10 +1,12 @@
+import find from './find.js'
+
 const CDN = s => `https://cdnjs.cloudflare.com/ajax/libs/${s}`;
 const ramda = CDN('ramda/0.21.0/ramda.min');
 requirejs.config({ paths: { ramda } });
 
 require(["ramda"] , actualScript);
 
-function actualScript( { curry , prop , map , addIndex , compose , forEach } ){
+function actualScript( { curry , prop , map , addIndex , compose , forEach , splitEvery , concat , reduce } ){
 
   const createManager = () => {
     let current = 0
@@ -16,6 +18,16 @@ function actualScript( { curry , prop , map , addIndex , compose , forEach } ){
     }
   }
   const manager = createManager();
+
+  const areas = ["a","b","c","d","e"]
+
+  const getElemWithId = (id) => document.getElementById(id)
+  const getContainer = getElemWithId("grid_container")
+  const createImg = curry((src,gridArea) => `<img src="${src}" class="gallery__grid__image area-${gridArea}">`)
+  const createGrid = (imgs) => `<section class="gallery__grid">${imgs}</section>`
+  const createRevGrid = (imgs) => `<section class="gallery__grid gallery__grid--reverse">${imgs}</section>`
+  const insertHTML = curry((html,node) => node.innerHTML = html)
+
 
   const getElemsWithClass = (className) => () => Array.from(document.getElementsByClassName(className))
   const getArrows = getElemsWithClass("carousel__control__button")
@@ -75,4 +87,17 @@ function actualScript( { curry , prop , map , addIndex , compose , forEach } ){
 
   addEventToArrows();
   addEventToDots();
+
+  const findMapping = (f,index) => createImg( f.url , areas[index%5] ) ;
+  const imgHtml = mapIndexed(findMapping)
+  const generateHTML = compose(createGrid, imgHtml)
+
+  function logImgs(i){
+    const x = mapIndexed((i,ind)=>{
+      console.log(reduce(concat,i)());
+    },splitEvery(5,mapIndexed(findMapping,i)))
+    console.log(x);
+  }
+
+  find('cats', logImgs)
 }

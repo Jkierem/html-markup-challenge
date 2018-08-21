@@ -212,6 +212,71 @@
   margin: 0px 10px;
 }
 
+
+.gallery {
+  background-color: #00a0e4;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.gallery__grid {
+  display: grid;
+  padding: 0px 15% 10px 15%;
+  grid-gap: 10px;
+  grid-template-areas:  "a a a b b c c"
+                        "a a a b b c c"
+                        "a a a d d e e"
+                        "a a a d d e e"
+}
+
+.gallery__grid--reverse {
+  grid-template-areas:  "c c b b a a a "
+                        "c c b b a a a "
+                        "e e d d a a a "
+                        "e e d d a a a "
+}
+
+.gallery__title {
+  padding: 40px;
+  font-size: 2rem;
+  color: white;
+}
+
+.gallery__grid__image {
+  box-sizing: border-box;
+  //border: 1px solid black;
+  background-color: white;
+  display: block;
+  border-radius: 15px;
+  width: 100%;
+  min-height: 250px;
+  transition: all 0.5s ease-in-out;
+}
+
+.gallery__grid__image:hover {
+  transform: scale(1.05);
+}
+
+.area-a {
+  grid-area: a;
+}
+
+.area-b {
+  grid-area: b;
+}
+
+.area-c {
+  grid-area: c;
+}
+
+.area-d {
+  grid-area: d;
+}
+
+.area-e {
+  grid-area: e;
+}
+
 @media only screen and (max-width: 40em){
   .header {
     background: url("http://www.teletubbies.com/img/bg-header-mob.png") top center repeat-x;
