@@ -6,7 +6,7 @@ requirejs.config({ paths: { ramda } });
 
 require(["ramda"] , actualScript);
 
-function actualScript( { curry , prop , map , addIndex , compose , forEach , splitEvery , concat , reduce } ){
+function actualScript( { curry , prop , map , addIndex , compose , forEach , splitEvery , concat , reduce , call } ){
 
   const createManager = () => {
     let current = 0
@@ -21,14 +21,11 @@ function actualScript( { curry , prop , map , addIndex , compose , forEach , spl
 
   const areas = ["a","b","c","d","e"]
 
-  const getElemWithId = (id) => document.getElementById(id)
   const createImg = curry((src,gridArea) => `<div class="gallery__grid__image__container area-${gridArea}"><img src="${src}" class="gallery__grid__image "></div>`)
-  const createTest = curry((src,gridArea) => `<div class="gallery__grid__image__container area-${gridArea}"></div>`)
   const createGrid = (imgs) => `<section class="gallery__grid">${imgs}</section>`
   const createRevGrid = (imgs) => `<section class="gallery__grid gallery__grid--reverse">${imgs}</section>`
   const insertHTML = curry((node,html) => node.innerHTML = html)
-  const insertIntoGridContainer = insertHTML(getElemWithId("grid_container"))
-
+  const insertIntoGridContainer = insertHTML(document.getElementById("grid_container"))
 
   const getElemsWithClass = (className) => () => Array.from(document.getElementsByClassName(className))
   const getArrows = getElemsWithClass("carousel__control__button")
@@ -71,7 +68,7 @@ function actualScript( { curry , prop , map , addIndex , compose , forEach , spl
   }
 
   const handleArrowClick = curry((man,e) => {
-    prop(getArrowAction(e))(man)()
+    call(prop(getArrowAction(e),man))
     refreshPage(man)
   })
 
@@ -89,14 +86,13 @@ function actualScript( { curry , prop , map , addIndex , compose , forEach , spl
   addEventToArrows();
   addEventToDots();
 
-  const loggingTool = (algo) => {console.log(algo); return algo}
-
   const reduceToSingleString = reduce(concat,"")
   const findMapping = mapIndexed((f,index) => createImg( f.url , areas[index%5] ))
-  const getImgHTML = compose(splitEvery(5) , findMapping)
-  const getImgGroups = compose(map(reduceToSingleString),getImgHTML)
+  const getImgGroups = compose(splitEvery(5) , findMapping)
+  const mapImgGroupsToStrings = compose(map(reduceToSingleString),getImgGroups)
   const mapToGrids = mapIndexed( (obj,index) => index%2 == 0 ? createGrid(obj) : createRevGrid(obj) )
-  const createHTML = compose( reduceToSingleString , mapToGrids , getImgGroups );
-  const setGallery = compose( insertIntoGridContainer , createHTML )
+  const getHTML = compose( reduceToSingleString , mapToGrids , mapImgGroupsToStrings );
+  const setGallery = compose( insertIntoGridContainer , getHTML )
+  
   find('cats', setGallery )
 }
