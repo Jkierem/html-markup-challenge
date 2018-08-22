@@ -91,12 +91,12 @@ function actualScript( { curry , prop , map , addIndex , compose , forEach , spl
 
   const loggingTool = (algo) => {console.log(algo); return algo}
 
-  const findMapping = (f,index) => createImg( f.url , areas[index%5] ) ;
-  const getImgHTML = compose(splitEvery(5) , mapIndexed(findMapping))
   const reduceToSingleString = reduce(concat,"")
+  const findMapping = mapIndexed((f,index) => createImg( f.url , areas[index%5] ))
+  const getImgHTML = compose(splitEvery(5) , findMapping)
   const getImgGroups = compose(map(reduceToSingleString),getImgHTML)
   const mapToGrids = mapIndexed( (obj,index) => index%2 == 0 ? createGrid(obj) : createRevGrid(obj) )
   const createHTML = compose( reduceToSingleString , mapToGrids , getImgGroups );
-
-  find('cats', compose(insertIntoGridContainer,createHTML))
+  const setGallery = compose( insertIntoGridContainer , createHTML )
+  find('cats', setGallery )
 }
