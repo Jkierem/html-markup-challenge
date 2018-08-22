@@ -22,11 +22,12 @@ function actualScript( { curry , prop , map , addIndex , compose , forEach , spl
   const areas = ["a","b","c","d","e"]
 
   const getElemWithId = (id) => document.getElementById(id)
-  const getContainer = getElemWithId("grid_container")
-  const createImg = curry((src,gridArea) => `<img src="${src}" class="gallery__grid__image area-${gridArea}">`)
+  const createImg = curry((src,gridArea) => `<div class="gallery__grid__image__container area-${gridArea}"><img src="${src}" class="gallery__grid__image "></div>`)
+  const createTest = curry((src,gridArea) => `<div class="gallery__grid__image__container area-${gridArea}"></div>`)
   const createGrid = (imgs) => `<section class="gallery__grid">${imgs}</section>`
   const createRevGrid = (imgs) => `<section class="gallery__grid gallery__grid--reverse">${imgs}</section>`
-  const insertHTML = curry((html,node) => node.innerHTML = html)
+  const insertHTML = curry((node,html) => node.innerHTML = html)
+  const insertIntoGridContainer = insertHTML(getElemWithId("grid_container"))
 
 
   const getElemsWithClass = (className) => () => Array.from(document.getElementsByClassName(className))
@@ -88,16 +89,14 @@ function actualScript( { curry , prop , map , addIndex , compose , forEach , spl
   addEventToArrows();
   addEventToDots();
 
+  const loggingTool = (algo) => {console.log(algo); return algo}
+
   const findMapping = (f,index) => createImg( f.url , areas[index%5] ) ;
-  const imgHtml = mapIndexed(findMapping)
-  const generateHTML = compose(createGrid, imgHtml)
+  const getImgHTML = compose(splitEvery(5) , mapIndexed(findMapping))
+  const reduceToSingleString = reduce(concat,"")
+  const getImgGroups = compose(map(reduceToSingleString),getImgHTML)
+  const mapToGrids = mapIndexed( (obj,index) => index%2 == 0 ? createGrid(obj) : createRevGrid(obj) )
+  const createHTML = compose( reduceToSingleString , mapToGrids , getImgGroups );
 
-  function logImgs(i){
-    const x = mapIndexed((i,ind)=>{
-      console.log(reduce(concat,i)());
-    },splitEvery(5,mapIndexed(findMapping,i)))
-    console.log(x);
-  }
-
-  find('cats', logImgs)
+  find('cats', compose(insertIntoGridContainer,createHTML))
 }
